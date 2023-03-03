@@ -18,13 +18,15 @@ function App() {
             <Sort/>
           </div>
           <h2 class="content__title">All sushi</h2>
-          <SushiBlock/>
+          <div className='content__items'>
+          <SushiBlock title="Maki Salmon" price={30}/>
+          <SushiBlock title="Maki" price={15}/>
+          <SushiBlock title="Nigiri Salmon" price={40}/>
+          </div>
         </div>
       </div>
     </div>
-      
     </div>
   );
 }
-
 export default App;
