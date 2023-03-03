@@ -3,6 +3,7 @@ import Header from './Components/Header';
 import Categories from './Components/Categories';
 import Sort from './Components/Sort';
 import './scss/app.scss';
+import SushiBlock from './Components/SushiBlock';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
             <Sort/>
           </div>
           <h2 class="content__title">All sushi</h2>
+          <SushiBlock/>
         </div>
       </div>
     </div>
