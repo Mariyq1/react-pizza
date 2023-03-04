@@ -9,15 +9,15 @@ import SushiBlock from './Components/SushiBlock';
 function App() {
   return (
     <div className="App">
-      <div class="wrapper">
+      <div className="wrapper">
         <Header/>
-      <div class="content">
-        <div class="container">
-          <div class="content__top">
+      <div className="content">
+        <div className="container">
+          <div className="content__top">
             <Categories/>
             <Sort/>
           </div>
-          <h2 class="content__title">All sushi</h2>
+          <h2 className="content__title">All sushi</h2>
           <div className='content__items'>
           <SushiBlock title="Maki Salmon" price={30}/>
           <SushiBlock title="Maki" price={15}/>
