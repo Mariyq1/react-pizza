@@ -11,7 +11,7 @@
     },
     {
         "id": 1,
-        "imageURL": "https://i.pinimg.com/564x/4c/9b/44/4c9b44df7ee7f31eac7be41534a051cb.jpg",
+        "imageURL": "https://i.pinimg.com/564x/a3/e9/5b/a3e95ba535128b34b84c7571c67ae86d.jpg",
         "title": "Maki Salmon",
         "size": [6,10,12],
         "types": [0],
@@ -71,17 +71,48 @@
     },
     {
         "id": 7,
+        "imageURL": "https://i.pinimg.com/564x/36/5d/5d/365d5d3825d52f2552f7eef0c71feb59.jpg",
+        "title": "Sushi Sandwich",
+        "types": [0, 1],
+        "size": [6, 10,12],
+        "price": 40,
+        "category": 3,
+        "rating": 4
+    },
+    {
+        "id": 8,
         "imageURL": "https://i.pinimg.com/736x/a5/43/dd/a543ddb0b57c5661a30c32c797bfa69c.jpg",
         "title": "Combo Royal",
-        "types": [ 1],
+        "types": [ 0, 1],
         "size": [],
         "price": 50,
         "category": 4,
         "rating": 4
-    },{
-        "id": 8,
+    },
+     {
+        "id": 9,
         "imageURL": "https://i.pinimg.com/564x/fe/8b/6e/fe8b6eb6b10864626629d71cbcaa2be0.jpg",
         "title": "Combo Big",
+        "types": [0, 1],
+        "size": [],
+        "price": 50,
+        "category": 4,
+        "rating": 4
+    },
+     {
+        "id": 10,
+        "imageURL": "https://i.pinimg.com/564x/f7/3f/60/f73f60d2363779b16247cb3c5c63ccec.jpg",
+        "title": "Combo King",
+        "types": [0, 1],
+        "size": [],
+        "price": 50,
+        "category": 4,
+        "rating": 4
+    },
+    {
+        "id": 11,
+        "imageURL": "https://i.pinimg.com/564x/ce/ca/63/ceca632578edc79187552457a46383a3.jpg",
+        "title": "Combo Sweet",
         "types": [0, 1],
         "size": [],
         "price": 50,

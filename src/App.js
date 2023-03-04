@@ -21,15 +21,7 @@ function App() {
           <div className='content__items'>
           {
             sushi.map((obj)=>(
-              <SushiBlock 
-              title={obj.title}
-              price={obj.price}
-              imageURL={obj.imageURL}
-              size={obj.size}
-              types={obj.types}
-              category={obj.category}
-              
-              />
+              <SushiBlock {...obj} key={obj.id}/>
             ))
           }
           

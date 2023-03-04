@@ -20,6 +20,7 @@ function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
                             <li 
                             className={activeType===type? 'active':""}
                             onClick={()=>setActiveType(type)}
+                            key={type}
                             >
                                 {typeNames[type]}
                             </li>
@@ -32,6 +33,7 @@ function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
                             <li
                             className={activeSize === i? 'active':""}
                             onClick={()=>setActiveSize(i)}
+                            key={size}
                             >{size} pcs</li>
                         ))
                     }
