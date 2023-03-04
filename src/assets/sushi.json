@@ -1,0 +1,82 @@
+[
+    {
+        "id": 0,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Maki",
+        "size": ["Normal", "Big"],
+        "price": 15,
+        "category": 0,
+        "rating": 4
+    },
+    {
+        "id": 1,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Maki Salmon",
+        "size": ["Normal", "Big"],
+        "price": 30,
+        "category": 0,
+        "rating": 4
+    },
+    {
+        "id": 2,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Sashimi ",
+        "size": ["Normal", "Big"],
+        "price": 15,
+        "category": 1,
+        "rating": 4
+    },
+    {
+        "id": 3,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Sashimi Salmon",
+        "size": ["Normal", "Big"],
+        "price": 30,
+        "category": 1,
+        "rating": 4
+    },
+    {
+        "id": 4,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Nigiri",
+        "size": ["Normal", "Big"],
+        "price": 15,
+        "category": 2,
+        "rating": 4
+    },
+    {
+        "id": 5,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Nigiri Salmon",
+        "size": ["Normal", "Big"],
+        "price": 30,
+        "category": 2,
+        "rating": 4
+    },
+    {
+        "id": 6,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Sushi Pizza",
+        "size": ["Normal", "Big"],
+        "price": 40,
+        "category": 3,
+        "rating": 4
+    },
+    {
+        "id": 7,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Combo Royal",
+        "size": ["Normal", "Big"],
+        "price": 50,
+        "category": 4,
+        "rating": 4
+    },{
+        "id": 8,
+        "imageURL": "https://i.pinimg.com/564x/6c/22/45/6c224590d846007256dbc400cecb48ff.jpg",
+        "name": "Combo Big",
+        "size": ["Normal", "Big"],
+        "price": 50,
+        "category": 4,
+        "rating": 4
+    }
+]

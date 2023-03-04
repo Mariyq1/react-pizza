@@ -5,7 +5,6 @@ import Sort from './Components/Sort';
 import './scss/app.scss';
 import SushiBlock from './Components/SushiBlock';
 
-
 function App() {
   return (
     <div className="App">
