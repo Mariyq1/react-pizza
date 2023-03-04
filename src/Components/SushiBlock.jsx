@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 
 function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
+    const [activeType, setActiveType] = useState(0);
+    const [activeSize, setActiveSize]=useState(0);
     const typeNames = ['normal' , 'spicy']
     return(
         <div className="sushi-block">
@@ -15,14 +17,22 @@ function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
                 <ul>
                    {
                         types.map((type)=>(
-                            <li>{typeNames[type]}</li>
+                            <li 
+                            className={activeType===type? 'active':""}
+                            onClick={()=>setActiveType(type)}
+                            >
+                                {typeNames[type]}
+                            </li>
                         ))
                     }
                 </ul>
                 <ul>
                     {
-                        size.map((size)=>(
-                            <li>{size} pcs</li>
+                        size.map((size, i)=>(
+                            <li
+                            className={activeSize === i? 'active':""}
+                            onClick={()=>setActiveSize(i)}
+                            >{size} pcs</li>
                         ))
                     }
                 </ul>
