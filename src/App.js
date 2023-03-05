@@ -10,13 +10,15 @@ import Skeleton from './Components/SushiBlock/Skeleton';
 
 function App() {
   const [items, setItems]=useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(()=>{
     fetch('https://6403a4573bdc59fa8f2a3657.mockapi.io/items')
     .then((res)=>{
       return res.json();
     })
     .then((arr)=>{
-      setItems(arr)
+      setItems(arr);
+      setIsLoading(false);
     })
   },[])
   return (
@@ -32,9 +34,8 @@ function App() {
           <h2 className="content__title">All sushi</h2>
           <div className='content__items'>
           {
-            items.map((obj)=>(
-              <Skeleton {...obj} key={obj.id}/>
-            ))
+            isLoading ? [...new Array(6)].map((_,index)=><Skeleton key={index}/>):
+            items.map((obj)=><SushiBlock key={obj.id} {...obj}/>)
           }
           </div>
         </div>
