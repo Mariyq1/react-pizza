@@ -4,7 +4,8 @@ import Header from './Components/Header';
 import Categories from './Components/Categories';
 import Sort from './Components/Sort';
 import './scss/app.scss';
-import SushiBlock from './Components/SushiBlock';
+import SushiBlock from './Components/SushiBlock/SushiBlock';
+import Skeleton from './Components/SushiBlock/Skeleton';
 
 
 function App() {
@@ -32,7 +33,7 @@ function App() {
           <div className='content__items'>
           {
             items.map((obj)=>(
-              <SushiBlock {...obj} key={obj.id}/>
+              <Skeleton {...obj} key={obj.id}/>
             ))
           }
           </div>
