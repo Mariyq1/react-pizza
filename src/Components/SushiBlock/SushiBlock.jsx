@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 
 
-function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
+function SushiBlock ({title, price,imageURL,size,types}){
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize]=useState(0);
     const typeNames = ['normal' , 'spicy']
     return(
-        <div className="sushi-block">
+        <div className="sushi-block__wrapper">
+            <div className="sushi-block">
             <img
              className="sushi-block__image"
              src={imageURL}
@@ -15,28 +16,24 @@ function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
             <h4 className="sushi-block__title">{title}</h4>
             <div className="sushi-block__selector">
                 <ul>
-                   {
-                        types.map((type)=>(
-                            <li 
-                            className={activeType===type? 'active':""}
-                            onClick={()=>setActiveType(type)}
-                            key={type}
-                            >
-                                {typeNames[type]}
-                            </li>
-                        ))
-                    }
+                   {types.map((type)=>(
+                    <li 
+                        className={activeType===type? 'active':""}
+                        onClick={()=>setActiveType(type)}
+                        key={type}
+                        >{typeNames[type]}
+                    </li>
+                    ))}
                 </ul>
                 <ul>
-                    {
-                        size.map((size, i)=>(
-                            <li
+                    {size.map((size, i)=>(
+                        <li
                             className={activeSize === i? 'active':""}
                             onClick={()=>setActiveSize(i)}
                             key={size}
-                            >{size} pcs</li>
-                        ))
-                    }
+                            >{size} pcs
+                        </li>
+                        ))}
                 </ul>
             </div>
             <div className="sushi-block__bottom">
@@ -47,6 +44,7 @@ function SushiBlock ({title, price,imageURL,size,category,id,rating,types}){
                     <i>0</i>
                 </button>
             </div>
+        </div>
         </div>
     )
 }
