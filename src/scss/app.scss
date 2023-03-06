@@ -135,6 +135,9 @@ body {
       }
     }
   }
+  &__items{
+    display: block;
+  }
 
   &__item {
     display: flex;
