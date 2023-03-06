@@ -4,7 +4,7 @@ import Sort from "../Components/Sort";
 import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
 
-export const Home = ()=>{
+export const Home = ({searchValue})=>{
     const [items, setItems]=useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [categoryId, setCategoryId] = useState(0);
@@ -24,6 +24,14 @@ export const Home = ()=>{
          })
          window.scrollTo(0,0);
     },[categoryId,sortType])
+    const sushi = items.filter((obj)=>{
+      if(obj.title.toLowerCase().includes(searchValue.toLowerCase())){
+        return true;
+      }
+        return false;
+    })
+    .map((obj)=><SushiBlock key={obj.id} {...obj}/>);
+    const skeleton =[...new Array(6)].map((_,index)=><Skeleton key={index}/>);
     return (
         <div className="container">
         <div className="content__top">
@@ -33,8 +41,7 @@ export const Home = ()=>{
           <h2 className="content__title">All sushi</h2>
           <div className='content__items'>
           {
-            isLoading ? [...new Array(6)].map((_,index)=><Skeleton key={index}/>):
-            items.map((obj)=><SushiBlock key={obj.id} {...obj}/>)
+            isLoading ? skeleton: sushi
           }
           </div>
         </div>
