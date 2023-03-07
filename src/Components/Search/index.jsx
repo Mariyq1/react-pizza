@@ -2,10 +2,11 @@ import React from "react";
 import style from './Search.module.scss';
 import search from "../../img/search-icon.png";
 import close from "../../img/close-icon.png"
+import { SearchContext } from "../../App";
 
 
-
-const Search = ({searchValue, setSearchValue})=>{
+const Search = ()=>{
+    const {searchValue,setSearchValue} = React.useContext(SearchContext);
     return(
         <div className={style.root}>
             <img 

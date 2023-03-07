@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { SearchContext } from "../App";
 import Categories from "../Components/Categories";
 import Pagination from "../Components/Pagination";
 import Sort from "../Components/Sort";
@@ -6,7 +7,8 @@ import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
 
 
-export const Home = ({searchValue})=>{
+export const Home = ()=>{
+    const {searchValue} = React.useContext(SearchContext);
     const [items, setItems]=useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [categoryId, setCategoryId] = useState(0);
@@ -47,7 +49,7 @@ export const Home = ({searchValue})=>{
             isLoading ? skeleton: sushi
           }
           </div>
-          <Pagination onChangePage={setCurrentPage}/>
+          <Pagination onChangePage={(number) =>setCurrentPage(number)}/>
         </div>
     )
 
