@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Categories from "../Components/Categories";
+import Pagination from "../Components/Pagination";
 import Sort from "../Components/Sort";
 import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
+
 
 export const Home = ({searchValue})=>{
     const [items, setItems]=useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [categoryId, setCategoryId] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [sortType, setSortType] = useState({
       name:'popular',
       sortProperty:'rating'
     });
         useEffect(()=>{
             setIsLoading(true);
-            fetch(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?${categoryId>0?`category=${categoryId}`:''}&sortBy=${sortType.sortProperty}&order=desc`)
+            fetch(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?page=${currentPage}&limit=4&${categoryId>0?`category=${categoryId}`:''}&sortBy=${sortType.sortProperty}&order=desc`)
             .then((res)=>{
             return res.json();
          })
@@ -23,7 +26,7 @@ export const Home = ({searchValue})=>{
             setIsLoading(false);
          })
          window.scrollTo(0,0);
-    },[categoryId,sortType])
+    },[categoryId,sortType,currentPage])
     const sushi = items.filter((obj)=>{
       if(obj.title.toLowerCase().includes(searchValue.toLowerCase())){
         return true;
@@ -44,6 +47,7 @@ export const Home = ({searchValue})=>{
             isLoading ? skeleton: sushi
           }
           </div>
+          <Pagination onChangePage={setCurrentPage}/>
         </div>
     )
 
