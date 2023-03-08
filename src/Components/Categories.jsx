@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 
 function Categories ({value, onClickCategory}){
-  const categories = ['All', 'Maki','Sashimi', 'Nigiri', 'Sushi Pizza', 'Combo'];
+  const categories = [ 'All','Sashimi', 'Nigiri', 'Sushi Pizza', 'Combo'];
   return(
   <div className="categories">
     <ul>
