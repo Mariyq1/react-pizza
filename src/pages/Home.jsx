@@ -6,19 +6,20 @@ import Pagination from "../Components/Pagination";
 import Sort from "../Components/Sort";
 import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
-import { setCategoryId } from "../redux/slices/filterSlice";
+import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
 import axios from "axios";
 
 export const Home = ()=>{
   const dispatch = useDispatch();
-  const {categoryId, sort} = useSelector(state=> state.filter);
+  const {categoryId, sort, currentPage} = useSelector(state=> state.filter);
   const {searchValue} = React.useContext(SearchContext);
   const [items, setItems]=useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const onChangeCategory = (id)=>{
-       dispatch(setCategoryId(id));}
-    useEffect(()=>{
+  const onChangeCategory = (id)=>{dispatch(setCategoryId(id));}
+  const onChangePage =(number) =>{
+    dispatch(setCurrentPage(number));
+  }
+  useEffect(()=>{
       setIsLoading(true);
       const sortBy= sort.sortProperty.replace('-', '');
       const order = sort.sortProperty.includes('-') ? 'asc':'desc';
@@ -30,7 +31,7 @@ export const Home = ()=>{
         setIsLoading(false);
       });
          window.scrollTo(0,0);
-    },[categoryId,sort.sortProperty,currentPage, searchValue])
+    },[categoryId,sort.sortProperty,searchValue,currentPage])
     const sushi = items.filter((obj)=>{
       if(obj.title.toLowerCase().includes(searchValue.toLowerCase())){
         return true;
@@ -51,7 +52,7 @@ export const Home = ()=>{
             isLoading ? skeleton: sushi
           }
           </div>
-          <Pagination onChangePage={(number) =>setCurrentPage(number)}/>
+          <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </div>
     )
 
