@@ -7,11 +7,11 @@ import Sort from "../Components/Sort";
 import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
 import { setCategoryId } from "../redux/slices/filterSlice";
+import axios from "axios";
 
 export const Home = ()=>{
   const dispatch = useDispatch();
   const {categoryId, sort} = useSelector(state=> state.filter);
- 
   const {searchValue} = React.useContext(SearchContext);
   const [items, setItems]=useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -24,15 +24,11 @@ export const Home = ()=>{
       const order = sort.sortProperty.includes('-') ? 'asc':'desc';
       const category = categoryId >0? `category=${categoryId}` : '';
       const search = searchValue ? `&search=${searchValue}`:'';
-
-      fetch(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?page=${currentPage}&limit=4&${category}&${sortBy}&${order}`)
-            .then((res)=>{
-            return res.json();
-         })
-            .then((arr)=>{
-            setItems(arr);
-            setIsLoading(false);
-         })
+      axios.get(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
+      .then((res)=>{
+        setItems(res.data);
+        setIsLoading(false);
+      });
          window.scrollTo(0,0);
     },[categoryId,sort.sortProperty,currentPage, searchValue])
     const sushi = items.filter((obj)=>{
