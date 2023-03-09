@@ -10,19 +10,22 @@ import { setCategoryId } from "../redux/slices/filterSlice";
 
 export const Home = ()=>{
   const dispatch = useDispatch();
-  const categoryId = useSelector(state=> state.filter.categoryId);
-  const sortType = useSelector((state)=>state.filter.sort.sortProperty); 
+  const {categoryId, sort} = useSelector(state=> state.filter);
+ 
   const {searchValue} = React.useContext(SearchContext);
-    const [items, setItems]=useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [currentPage, setCurrentPage] = useState(1);
-    
-    const onChangeCategory = (id)=>{
-       dispatch(setCategoryId(id));
-    }
-        useEffect(()=>{
-            setIsLoading(true);
-            fetch(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?page=${currentPage}&limit=4&${categoryId>0?`category=${categoryId}`:''}&sortBy=${sortType}&order=desc`)
+  const [items, setItems]=useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const onChangeCategory = (id)=>{
+       dispatch(setCategoryId(id));}
+    useEffect(()=>{
+      setIsLoading(true);
+      const sortBy= sort.sortProperty.replace('-', '');
+      const order = sort.sortProperty.includes('-') ? 'asc':'desc';
+      const category = categoryId >0? `category=${categoryId}` : '';
+      const search = searchValue ? `&search=${searchValue}`:'';
+
+      fetch(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?page=${currentPage}&limit=4&${category}&${sortBy}&${order}`)
             .then((res)=>{
             return res.json();
          })
@@ -31,7 +34,7 @@ export const Home = ()=>{
             setIsLoading(false);
          })
          window.scrollTo(0,0);
-    },[categoryId,sortType,currentPage])
+    },[categoryId,sort.sortProperty,currentPage, searchValue])
     const sushi = items.filter((obj)=>{
       if(obj.title.toLowerCase().includes(searchValue.toLowerCase())){
         return true;
