@@ -1,10 +1,24 @@
 import React, { useState } from "react";
+import { useSelector,useDispatch } from "react-redux";
+import {addItem} from '../../redux/slices/cartSlice';
 
 
-function SushiBlock ({title, price,imageURL,size,types}){
+const typeNames = ['normal' , 'spicy']
+function SushiBlock ({id,title, price,imageURL,size,types}){
+    const dispatch = useDispatch();
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize]=useState(0);
-    const typeNames = ['normal' , 'spicy']
+    const onClickAdd=()=>{
+        const item = {
+            id,
+            title,
+            price,
+            imageURL,
+            type: typeNames[activeType],
+            size: sizes[activeSize]
+        }
+        dispatch(addItem(item));
+    }
     return(
         <div className="sushi-block__wrapper">
             <div className="sushi-block">
@@ -39,7 +53,8 @@ function SushiBlock ({title, price,imageURL,size,types}){
             <div className="sushi-block__bottom">
                 <div className="sushi-block__price">from {price}$</div>
                 <button 
-                    className="button button--outline button--add">
+                    className="button button--outline button--add"
+                    onClick={onClickAdd}>
                     <span>Add</span>
                     <i>0</i>
                 </button>
