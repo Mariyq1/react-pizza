@@ -15,7 +15,7 @@ function SushiBlock ({id,title, price,imageURL,size,types}){
             price,
             imageURL,
             type: typeNames[activeType],
-            size: sizes[activeSize]
+            size: size[activeSize]
         }
         dispatch(addItem(item));
     }

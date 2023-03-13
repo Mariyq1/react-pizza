@@ -3,16 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../redux/slices/filterSlice";
 import { useRef } from "react";
 export const list = [
-     {name: 'popular',
-     sortProperty: 'rating'},
-     {
-      name: 'price',
-      sortProperty: 'price'
-     } ,
-     {
-      name: 'alphabet',
-      sortProperty: 'title'
-     }
+     {name: 'popular',sortProperty: 'rating'},
+     {name: 'price',sortProperty: 'price'} ,
+     {name: 'alphabet',sortProperty: 'title'}
     ];
 function Sort (){
   const dispatch = useDispatch();
