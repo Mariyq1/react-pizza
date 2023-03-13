@@ -7,39 +7,32 @@ import Sort, { list } from "../Components/Sort";
 import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
 import { setCategoryId, setCurrentPage,setFilters } from "../redux/slices/filterSlice";
-import axios from "axios";
 import qs from 'qs';
 import { useNavigate } from "react-router-dom";
+import { fetchSushi } from "../redux/slices/sushiSlice";
 
 export const Home = ()=>{
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {categoryId, sort, currentPage} = useSelector(state=> state.filter);
+  const {items, status} = useSelector(state=> state.sushi);
+
   const isSearch = useRef(false);
   const isMounted = useRef(false);
   const {searchValue} = React.useContext(SearchContext);
-  const [items, setItems]=useState([]);
-  const [isLoading, setIsLoading] = useState(true);
   const onChangeCategory = (id)=>{dispatch(setCategoryId(id));}
   const onChangePage =(number) =>{
     dispatch(setCurrentPage(number));
   }
 
-  const fetchSushi = async ()=>{
-    setIsLoading(true);
+  const getSushi = async ()=>{
       const sortBy= sort.sortProperty.replace('-', '');
       const order = sort.sortProperty.includes('-') ? 'asc':'desc';
       const category = categoryId >0? `category=${categoryId}` : '';
       const search = searchValue ? `&search=${searchValue}`:'';
-      
-      try {
-      const res = await axios.get(`https://6403a4573bdc59fa8f2a3657.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
-      setItems(res.data);
-      } catch (error) {
-        alert('Error')
-      }finally{
-        setIsLoading(false);
-      }
+      dispatch(fetchSushi({
+        sortBy, order,category,search,currentPage
+      }));
          window.scrollTo(0,0);
   }
 
@@ -58,15 +51,8 @@ export const Home = ()=>{
     isSearch.current = true;
     }
   },[])
-
-  
-  
   useEffect(()=>{
-    window.scrollTo(0,0);
-    if(!isSearch.current){
-      fetchSushi();
-    }
-    isSearch.current = false;
+    getSushi();
     },[categoryId,sort.sortProperty,searchValue,currentPage])
     
     
@@ -99,11 +85,16 @@ export const Home = ()=>{
             <Sort />
           </div>
           <h2 className="content__title">All sushi</h2>
-          <div className='content__items'>
-          {
-            isLoading ? skeleton: sushi
+         
+          {status === 'error' ? (
+            <div>
+              <h2>Error</h2>
+              <p>Error. Something is wrong. We can't open page</p>
+            </div>
+          ):
+            (<div className='content__items'>{status === 'loading' ? skeleton: sushi}</div>)
           }
-          </div>
+       
           <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
         </div>
     )
