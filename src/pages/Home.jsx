@@ -8,7 +8,7 @@ import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
 import { selectFilter, setCategoryId, setCurrentPage,setFilters } from "../redux/slices/filterSlice";
 import qs from 'qs';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { fetchSushi, selectSushiData } from "../redux/slices/sushiSlice";
 
 export const Home = ()=>{
@@ -74,7 +74,10 @@ export const Home = ()=>{
       }
         return false;
     })
-    .map((obj)=><SushiBlock key={obj.id} {...obj}/>);
+    .map((obj)=>
+    <Link key={obj.id} to={`/sushi/${obj.id}`}>
+    <SushiBlock key={obj.id} {...obj}/>
+    </Link>);
     const skeleton =[...new Array(6)].map((_,index)=><Skeleton key={index}/>);
     return (
         <div className="container">
