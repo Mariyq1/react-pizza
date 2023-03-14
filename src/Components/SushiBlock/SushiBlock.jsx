@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useSelector,useDispatch } from "react-redux";
-import {addItem} from '../../redux/slices/cartSlice';
+import {addItem, selectCartItem} from '../../redux/slices/cartSlice';
 
 
 const typeNames = ['normal' , 'spicy']
 function SushiBlock ({id,title, price,imageURL,size,types}){
     const dispatch = useDispatch();
+    const cartItem = useSelector(selectCartItem(id))
     const [activeType, setActiveType] = useState(0);
     const [activeSize, setActiveSize]=useState(0);
+    const addedCount = cartItem ? cartItem.count :0;
     const onClickAdd=()=>{
         const item = {
             id,

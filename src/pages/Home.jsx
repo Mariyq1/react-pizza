@@ -6,20 +6,18 @@ import Pagination from "../Components/Pagination";
 import Sort, { list } from "../Components/Sort";
 import Skeleton from "../Components/SushiBlock/Skeleton";
 import SushiBlock from "../Components/SushiBlock/SushiBlock";
-import { setCategoryId, setCurrentPage,setFilters } from "../redux/slices/filterSlice";
+import { selectFilter, setCategoryId, setCurrentPage,setFilters } from "../redux/slices/filterSlice";
 import qs from 'qs';
 import { useNavigate } from "react-router-dom";
-import { fetchSushi } from "../redux/slices/sushiSlice";
+import { fetchSushi, selectSushiData } from "../redux/slices/sushiSlice";
 
 export const Home = ()=>{
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {categoryId, sort, currentPage} = useSelector(state=> state.filter);
-  const {items, status} = useSelector(state=> state.sushi);
-
+  const {categoryId, sort, currentPage, searchValue} = useSelector(selectFilter);
+  const {items, status} = useSelector(selectSushiData);
   const isSearch = useRef(false);
   const isMounted = useRef(false);
-  const {searchValue} = React.useContext(SearchContext);
   const onChangeCategory = (id)=>{dispatch(setCategoryId(id));}
   const onChangePage =(number) =>{
     dispatch(setCurrentPage(number));
