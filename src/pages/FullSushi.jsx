@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const FullSushi =()=>{
     const [sushi, setSushi] = useState();
     const {id} = useParams();
+    const navigate = useNavigate();
+
     useEffect(()=>{
         async function fetchSushi(){
         try {
@@ -12,6 +14,7 @@ const FullSushi =()=>{
             setSushi(data);
         } catch (error) {
             alert('Error')
+            navigate();
         }
     }
     fetchSushi();
